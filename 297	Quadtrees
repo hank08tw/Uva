@@ -1,0 +1,32 @@
+#max depth是5 樹總共有6層 divide and conquer分治法
+string_pos=-1
+def dfs(x,y,width, string,graph):
+    global string_pos
+    string_pos+=1
+    if string[string_pos] == 'p':
+        dfs(x + width // 2, y, width // 2, string, graph)
+        dfs(x, y, width // 2, string, graph)
+        dfs(x, y + width // 2, width // 2, string, graph)
+        dfs(x + width // 2, y + width // 2, width // 2, string, graph)
+    elif string[string_pos] == 'f':
+        for i in range(y, y + width):
+            for j in range(x, x + width):
+                graph[i][j] = 1
+n=int(input())
+for i in range(n):
+    count=0
+    string1=input()
+    string2=input()
+    graph1=[[0 for a in range(32)]for b in range(32)]
+    graph2=[[0 for a in range(32)]for b in range(32)]
+    string_pos-=string_pos
+    string_pos-=1
+    dfs(0,0,32,string1,graph1)
+    string_pos -= string_pos
+    string_pos -= 1
+    dfs(0,0,32,string2,graph2)
+    for a in range(32):
+        for b in range(32):
+            if graph1[a][b]==1 or graph2[a][b]==1:
+                count+=1
+    print("There are "+str(count)+" black pixels.")
