@@ -1,3 +1,4 @@
+#理解錯題意
 try:
     while True:
         s=str(input())
