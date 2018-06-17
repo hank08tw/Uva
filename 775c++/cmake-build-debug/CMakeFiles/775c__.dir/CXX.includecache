@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/hank08tw/Desktop/uva/775c++/main.cpp
+iostream
+-
+vector
+-
+cstdlib
+-
+stdio.h
+-
+memory.h
+-
+
