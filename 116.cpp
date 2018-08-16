@@ -5,11 +5,11 @@
 #include <stdio.h>
 using namespace std;
 long long dp[1005][1005];
-int a[1005][1005];
+long long a[1005][1005];
 int keep[1005][1005];//1:up 2:right 3:down
 int n,m;
 long long solve(int i,int j){
-	if(dp[i][j]!=0)return dp[i][j];
+	if(dp[i][j]!=10000000000000000)return dp[i][j];
 	dp[i][j]=a[i][j];
 	int up=i-1;
 	int mid=i;
@@ -33,28 +33,32 @@ int main(){
 		}
 		if(n==1){
 			int all=0;
-			for(int i=1;i<=m;i++){
+			for(int i=1;i<=m-1;i++){
                        		cout << 1 << " ";
 				all+=a[1][i];
-                	}       
+                	}
+			cout << 1 << endl;
+			all+=a[1][m];
                 	cout << all << endl;
 			continue;
 		}
-		memset(dp,0,sizeof(dp));
+		//memset(dp,1 << 30+1,sizeof(dp));
+		for(int i=1;i<=n;i++){for(int j=1;j<=m;j++){dp[i][j]=10000000000000000;}}
 		for(int i=1;i<=n;i++){dp[i][m]=a[i][m];}
 		int min_n=0;
-		long long min_v=1000000000000000;
+		long long min_v=10000000000000000;
 		for(int i=1;i<=n;i++){
 			if(min_v>solve(i,1)){
 				min_n=i;
 				min_v=solve(i,1);
 			}
 		}
+		//cout << endl;
 		/*
 		for(int i=1;i<=n;i++){
 			for(int j=1;j<=m;j++){cout << keep[i][j] << " ";}cout << endl;
-		}
-		*/
+		}*/
+		//cout << endl;
 		for(int i=1;i<m;i++){
 			cout << min_n << " ";
 			min_n=keep[min_n][i];
